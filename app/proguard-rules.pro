@@ -5,6 +5,28 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
+# Keep stack traces readable in release builds.
+-keepattributes SourceFile,LineNumberTable
+
+# Launcher entry declared in AndroidManifest.xml.
+-keep class com.example.decibeldetection.MainActivity { *; }
+
+# Custom views are instantiated from XML layout files, so keep class names and
+# the constructors used by LayoutInflater.
+-keepnames class com.example.decibeldetection.DecibelGaugeView
+-keep class com.example.decibeldetection.DecibelGaugeView {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepnames class com.example.decibeldetection.WaveformView
+-keep class com.example.decibeldetection.WaveformView {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
